@@ -8,6 +8,7 @@ import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 import pers.yufiria.trackingArrow.listener.TrackingHandler;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ArrowTask extends CrypticLibRunnable {
@@ -53,6 +54,9 @@ public class ArrowTask extends CrypticLibRunnable {
             targetLoc = livingEntity.getLocation();
         } else {
             targetLoc = livingEntity.getEyeLocation();
+        }
+        if (!Objects.equals(targetLoc.getWorld(), arrow.getLocation().getWorld())) {
+            return;
         }
         Vector vector = targetLoc.subtract(arrow.getLocation()).toVector().normalize();
         vector.multiply(arrow.getVelocity().length());
