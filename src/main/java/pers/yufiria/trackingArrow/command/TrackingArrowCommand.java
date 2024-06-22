@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pers.yufiria.trackingArrow.TrackingArrowBukkit;
+import pers.yufiria.trackingArrow.config.MessageConfig;
 import pers.yufiria.trackingArrow.listener.TrackingHandler;
 
 import java.util.List;
@@ -23,27 +24,27 @@ public class TrackingArrowCommand extends CommandHandler {
     }
 
     @Subcommand
-    SubcommandHandler enable = new SubcommandHandler("enable") {
+    SubcommandHandler on = new SubcommandHandler("on") {
         @Override
         public boolean execute(@NotNull CommandSender sender, @NotNull List<String> args) {
             if (!(sender instanceof Player player)) {
                 return true;
             }
             TrackingHandler.INSTANCE.enable(player);
-            MsgSender.sendMsg(player, "Arrow tracking enabled!");
+            MsgSender.sendMsg(player, MessageConfig.commandOn.value());
             return true;
         }
     };
 
     @Subcommand
-    SubcommandHandler disable = new SubcommandHandler("disable") {
+    SubcommandHandler off = new SubcommandHandler("off") {
         @Override
         public boolean execute(@NotNull CommandSender sender, @NotNull List<String> args) {
             if (!(sender instanceof Player player)) {
                 return true;
             }
             TrackingHandler.INSTANCE.disable(player);
-            MsgSender.sendMsg(player, "Arrow tracking disabled!");
+            MsgSender.sendMsg(player, MessageConfig.commandOff.value());
             return true;
         }
     };

@@ -32,7 +32,6 @@ public class PlayerAimTask extends CrypticLibRunnable {
                 player.getEyeLocation().getDirection(),
                 PluginConfig.trackingRayLength.value(), it -> !it.equals(player)
             );
-//            System.out.println(rayTraceResult);
             if (rayTraceResult == null) {
                 continue;
             }
@@ -53,6 +52,10 @@ public class PlayerAimTask extends CrypticLibRunnable {
 
     public @Nullable UUID getAimed(Player player) {
         return playerAimMap.get(player.getUniqueId());
+    }
+
+    public void removeAimed(Player player) {
+        playerAimMap.remove(player.getUniqueId());
     }
 
 }

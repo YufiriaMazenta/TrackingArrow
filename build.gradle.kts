@@ -26,7 +26,7 @@ dependencies {
 }
 
 group = "pers.yufiria"
-version = "1.0.0"
+version = "1.0.1"
 var mainClass = "pers.yufiria.trackingArrow.TrackingArrowBukkit"
 var pluginVersion: String = version.toString() + "-" + SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
 java.sourceCompatibility = JavaVersion.VERSION_17
@@ -49,6 +49,7 @@ tasks {
         }
     }
     compileJava {
+        dependsOn(clean)
         options.encoding = "UTF-8"
     }
     shadowJar {

@@ -3,9 +3,7 @@ package pers.yufiria.trackingArrow.task;
 import crypticlib.scheduler.CrypticLibRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 import pers.yufiria.trackingArrow.listener.TrackingHandler;
@@ -50,7 +48,12 @@ public class ArrowTask extends CrypticLibRunnable {
             return;
         }
         LivingEntity livingEntity = (LivingEntity) target;
-        Location targetLoc = livingEntity.getEyeLocation();
+        Location targetLoc;
+        if (livingEntity instanceof EnderDragon) {
+            targetLoc = livingEntity.getLocation();
+        } else {
+            targetLoc = livingEntity.getEyeLocation();
+        }
         Vector vector = targetLoc.subtract(arrow.getLocation()).toVector().normalize();
         vector.multiply(arrow.getVelocity().length());
         arrow.setVelocity(vector);
