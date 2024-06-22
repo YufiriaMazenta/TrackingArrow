@@ -22,7 +22,7 @@ repositories {
 dependencies {
     compileOnly("org.jetbrains:annotations:24.0.1")
     compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    implementation("com.crypticlib:CrypticLib:0.18.5")
+    implementation("com.crypticlib:common:0.18.5")
 }
 
 group = "pers.yufiria"
