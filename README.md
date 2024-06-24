@@ -4,6 +4,8 @@
 
 自动追踪箭插件
 
+视频演示：[BiliBili](https://www.bilibili.com/video/BV1Y1421C75n/?share_source=copy_web&vd_source=b3f257a547cc014fb03a6de8179eeb55)
+
 ### 使用方式
 
 #### 开启追踪
