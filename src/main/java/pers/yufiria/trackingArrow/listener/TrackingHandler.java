@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import pers.yufiria.trackingArrow.TrackingArrowBukkit;
@@ -104,6 +105,11 @@ public enum TrackingHandler implements Listener {
         if (event.getAction().name().contains("LEFT")) {
             aimTask.removeAimed(player);
         }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        disable(event.getPlayer());
     }
 
     public void enable(Player player) {

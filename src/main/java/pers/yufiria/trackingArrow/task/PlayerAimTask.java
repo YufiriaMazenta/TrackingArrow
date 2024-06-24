@@ -2,9 +2,11 @@ package pers.yufiria.trackingArrow.task;
 
 import crypticlib.scheduler.CrypticLibRunnable;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.RayTraceResult;
@@ -24,7 +26,13 @@ public class PlayerAimTask extends CrypticLibRunnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!TrackingHandler.INSTANCE.isEnabled(player)) {
-                playerAimMap.remove(player.getUniqueId());
+                removeAimed(player);
+                continue;
+            }
+            ItemStack handItem = player.getInventory().getItemInMainHand();
+            ItemStack offHandItem = player.getInventory().getItemInOffHand();
+            if (!handItem.getType().equals(Material.BOW) && !offHandItem.getType().equals(Material.BOW)) {
+                removeAimed(player);
                 continue;
             }
             RayTraceResult rayTraceResult = player.getWorld().rayTraceEntities(
@@ -36,7 +44,7 @@ public class PlayerAimTask extends CrypticLibRunnable {
                 continue;
             }
             Entity hitEntity = rayTraceResult.getHitEntity();
-            if (!(hitEntity instanceof LivingEntity livingEntity)) {
+            if (!(hitEntity instanceof LivingEntity)) {
                 continue;
             }
             playerAimMap.put(player.getUniqueId(), hitEntity.getUniqueId());
