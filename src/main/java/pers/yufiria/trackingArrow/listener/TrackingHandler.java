@@ -18,6 +18,7 @@ import pers.yufiria.trackingArrow.TrackingArrowBukkit;
 import pers.yufiria.trackingArrow.config.PluginConfig;
 import pers.yufiria.trackingArrow.task.ArrowTask;
 import pers.yufiria.trackingArrow.task.PlayerAimTask;
+import pers.yufiria.trackingArrow.util.PlayerUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -97,9 +98,7 @@ public enum TrackingHandler implements Listener {
             return;
         }
         //判断主手是否是弓
-        ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
-        List<Material> bows = List.of(Material.BOW, Material.CROSSBOW);
-        if (!bows.contains(itemInMainHand.getType())) {
+        if (!PlayerUtils.handBow(player)) {
             return;
         }
         if (event.getAction().name().contains("LEFT")) {

@@ -26,7 +26,7 @@ dependencies {
 }
 
 group = "pers.yufiria"
-version = "1.0.3"
+version = "1.0.4"
 var mainClass = "pers.yufiria.trackingArrow.TrackingArrowBukkit"
 var pluginVersion: String = version.toString() + "-" + SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
 java.sourceCompatibility = JavaVersion.VERSION_17

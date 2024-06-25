@@ -13,6 +13,7 @@ import org.bukkit.util.RayTraceResult;
 import org.jetbrains.annotations.Nullable;
 import pers.yufiria.trackingArrow.config.PluginConfig;
 import pers.yufiria.trackingArrow.listener.TrackingHandler;
+import pers.yufiria.trackingArrow.util.PlayerUtils;
 
 import java.util.Map;
 import java.util.UUID;
@@ -29,9 +30,7 @@ public class PlayerAimTask extends CrypticLibRunnable {
                 removeAimed(player);
                 continue;
             }
-            ItemStack handItem = player.getInventory().getItemInMainHand();
-            ItemStack offHandItem = player.getInventory().getItemInOffHand();
-            if (!handItem.getType().equals(Material.BOW) && !offHandItem.getType().equals(Material.BOW)) {
+            if (!PlayerUtils.handBow(player)) {
                 removeAimed(player);
                 continue;
             }
